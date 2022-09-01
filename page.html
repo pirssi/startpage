@@ -1,92 +1,142 @@
+<!-- 
+minimalist start page by pirssi
+with clock, hotlinks, a custom font and a background based on system color scheme 
+originally (loosely) based on https://startpages.github.io/startpages/Startpage_kopri-nb/ 
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
-  <title>start page</title>
-  <style type="text/css" id="less:startpages-Startpage_kopri-nb-style-style">
-    @import "https://startpages.github.io/startpages/Startpage_kopri-nb/style/normalize.css";
+  <title>home</title>
+  <script>
+    function initialize() {
+      colorScheme();
+      updateClock();
+    }
+    function colorScheme() {
+      // change the background based on user system color scheme
+      var bStyle = document.body.style;
+      var lightbg = "url('background_day.jpg')";
+      var darkbg = "url('background_night.png')";
+
+      // if (matchMedia) { // if media queries are supported
+      const colorschemeMQ = matchMedia("(prefers-color-scheme: dark)");
+      if (colorschemeMQ.matches) { // check the user system color scheme (matches dark)
+        // dark theme
+        bStyle.backgroundImage = darkbg;
+      } else {
+        // light theme
+        bStyle.backgroundImage = lightbg;
+      }
+      colorschemeMQ.addListener(e => { // handle color scheme change events
+        if (e.matches) {
+          bStyle.backgroundImage = darkbg;
+        } else {
+          bStyle.backgroundImage = lightbg;
+        }
+      });
+      // } else {
+      //   // revert to user system time based if using an ancient browser
+      //   var d = new Date();
+      //   var h = d.getHours();
+      //   (h < 22 && h > 8) ? bStyle.backgroundImage = lightbg : bStyle.backgroundImage = dark;
+      // }
+    }
+    function updateClock() {
+      var d = new Date();
+      var h = d.getHours();
+      var m = d.getMinutes();
+      var s = d.getSeconds();
+      h = leadingZeros(h);
+      m = leadingZeros(m);
+      s = leadingZeros(s);
+
+      document.getElementById('clock').innerHTML = h + ":" + m + ":" + s;
+
+      var t = setTimeout(updateClock, 500);
+    }
+    function leadingZeros(i) {
+      // add zero in front of numbers < 10
+      return (i < 10) ? i = "0" + i : i;
+    }
+  </script>
+  <style type="text/css">
+    @font-face {
+      font-family: 'AdobeTextPro-Regular';
+      font-style: normal;
+      font-weight: normal;
+      src: local('AdobeTextPro-Regular'), url('AdobeTextPro-Regular.woff') format('woff');
+    }
+
+    * {
+      font-family: 'AdobeTextPro-Regular';
+      font-size: 30px;
+      color: black;
+    }
 
     body {
       background: #232136;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: bottom;
+      background-size: cover;
     }
 
     a {
-      color: #dddddd;
       text-decoration: none;
       display: block;
       float: none;
+      line-height: 1.1;
     }
 
     ul {
       list-style: none;
-      padding: 6px 4px 8px 6px;
-      margin: 0;
-      width: 180px;
+      padding: 50px 50px 50px 50px;
+      margin: 10px;
+      width: max-content;
       float: left;
     }
 
-    input[type="submit"] {
-      display: none;
-    }
-
-    input {
-      background-color: #292640;
-      color: #dddddd;
-      border: none;
-      font-family: monospace;
-      padding: 0;
+    li a:hover {
+      color: #E6503D;
+      -webkit-transition: all 0.2s ease-out;
+      -moz-transition: all 0.2s ease-out;
+      -o-transition: all 0.2s ease-out;
+      transition: all 0.2s ease-out;
     }
 
     #container {
-      background-color: #292640;
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 13px;
-      width: 585px;
-      height: 290px;
-      padding: 5px;
-      border: 1px solid #7980BF;
-
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #F0E1C7;
+      padding: 70px 70px 0px 70px;
+      border: 3px solid black;
+      display: inline-block;
+      min-width: max-content;
       /*border: 2px solid #343059;*/
-      color: #404040;
     }
 
-    #search {
+    #clock {
+      text-align: center;
+      font-size: 72px;
+    }
+
+    #left {
       float: left;
-      margin: 0 0 0 6px;
-      padding: 0;
+      width: 33%;
     }
 
-    #links {
-      margin: 7px 0px 0px 2px;
-      font-size: 12px;
-      height: 172px;
-    }
-
-    .PS1 {
-      padding: 5px 0px 0px 5px;
-      display: block;
-      width: 585px;
-    }
-
-    .PS1:nth-of-type(1)::after {
-      content: " about -pirssi";
-      margin: 0 0 0 6px;
-      font-size: 13px;
-      color: #3CE99C;
-    }
-
-    .at::before {
-      content: "pirssi";
-      color: #FFC929;
-    }
-
-    .at {
+    #center {
       float: left;
-      color: #cccccc;
+      width: 33%;
     }
 
+<<<<<<< HEAD
     .at::after {
       content: "himas";
       color: #4e9fb1;
@@ -202,19 +252,21 @@
       -moz-transition: all 0.2s ease-out;
       -o-transition: all 0.2s ease-out;
       transition: all 0.2s ease-out;
+=======
+    #right {
+      float: right;
+      width: 33%;
+>>>>>>> 5388682 (updated, added readme)
     }
   </style>
-  <!-- Original Design: kopri@unixhub.net | Recode/enhancement: evolution@unixhub.net -->
 </head>
 
-<body>
-  <div id="container" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"
-    class="container">
-    <div class="PS1">
-      <p class="at">@</p>
-      <p class="amper">~</p>
-    </div>
+<body onload="initialize()" id="main">
+  <div id="container" class="container">
+    <a id="clock">10:08:32</a>
+
     <div id="links">
+<<<<<<< HEAD
       <ul class="one">
         <li>main</li>
         <li><a href="https://mail.google.com/">gmail</a></li>
@@ -328,6 +380,42 @@
       <form id="search" action="https://www.google.com/search?q=">
         <input maxlength="250" size="40" tabindex="1" name="q" autofocus>
       </form>
+=======
+      <div id="left">
+        <ul class="one">
+          <li><a href="https://www.youtube.com/">Youtube</a></li>
+          <li><a href="https://www.twitch.tv/directory/all">Twitch</a></li>
+          <li><a href="https://www.netflix.com/">Netflix</a></li>
+          <li><a href="https://fi.hbonordic.com/">HBO</a></li>
+          <li><a href="https://www.disneyplus.com/home">Disney+</a></li>
+          <li><a href="https://www.primevideo.com">Prime Video</a></li>
+        </ul>
+      </div>
+
+      <div id="center">
+        <ul class="two">
+          <li><a href="https://twitter.com">Twitter</a></li>
+          <li><a href="https://www.reddit.com/r/GlobalOffensive/">r/csgo</a></li>
+          <!-- <li><a href="https://www.reddit.com/r/EscapeFromTarkov/">r/eft</a></li> -->
+          <li><a href="https://www.reddit.com/r/2007scape/">r/osrs</a></li>
+          <li><a href="https://www.reddit.com/r/movies/">r/movies</a></li>
+          <!-- <li><a href="https://boards.4chan.org/wg/">/wg/</a></li> -->
+          <!-- <li><a href="https://boards.4chan.org/fa/">/fa/</a></li> -->
+          <li><a href="https://boards.4chan.org/g/">/g/</a></li>
+          <li><a href="https://news.ycombinator.com/">hn</a></li>
+        </ul>
+      </div>
+      <div id="right">
+        <ul class="three">
+          <li><a href="https://mail.google.com/">Gmail</a></li>
+          <li><a href="https://moodle.uef.fi/">UEF Moodle</a></li>
+          <!-- <li><a href="https://digicampus.fi/my/">DigiCampus</a></li> -->
+          <li><a href="https://peppi.uef.fi/">Peppi</a></li>
+          <li><a href="https://lukkarit.uef.fi/#/schedule">Lukkari</a></li>
+          <li><a href="https://outlook.office.com/owa/">Outlook</a></li>
+        </ul>
+      </div>
+>>>>>>> 5388682 (updated, added readme)
     </div>
   </div>
 </body>
