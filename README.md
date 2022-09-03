@@ -8,4 +8,4 @@ originally (loosely) based on https://startpages.github.io/startpages/Startpage_
 this repo may not be up to date, latest is found [here](https://github.com/pirssi/pirssi.github.io/) ([direct link](https://github.com/pirssi/pirssi.github.io/tree/master/start))
 <br>
 
-for firefox, files required to enable custom urls (both http(s):// and file:// ) are included in /firefox, just drag and drop to firefox installation folder root
+for firefox, files required to enable custom urls (both http(s):// and file:/// ) are included in /firefox, replace the url in autoconfig.cfg and just drag and drop the files to firefox installation folder root
