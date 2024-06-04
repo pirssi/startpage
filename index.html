@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>////////////////////////////////</title>
+
+  <script src="scripts/clock.js" defer></script>
+  <script src="scripts/buttons.js" defer></script>
+  <link rel="stylesheet" href="styles/start.css">
+
+  <link rel="preload" as="image" href="images/background-light.jpg">
+  <link rel="preload" as="image" href="images/background-dark.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+
+  <button id="themeToggle" class="theme-toggle" title="Toggle dark theme">◐</button>
+  <button id="styleToggle" class="style-toggle" title="Toggle transparency">▨</button>
+
+  <div id="box" class="box">
+    <div id="clockcontainer">
+      <a id="clock" class="clock">10:08:32</a>
+    </div>
+
+    <div id="link-container">
+      <div class="link-column">
+        <ul>
+          <li><a href="https://www.youtube.com/">YouTube</a></li>
+          <li><a href="https://www.twitch.tv/">Twitch</a></li>
+          <li><a href="https://www.primevideo.com/">Prime Video</a></li>
+          <li><a href="https://www.disneyplus.com/">Disney+</a></li>
+          <li><a href="https://play.max.com/">Max</a></li>
+        </ul>
+      </div>
+
+      <div class="link-column">
+        <ul>
+          <li><a href="https://www.reddit.com/r/2007scape/">r/osrs</a></li>
+          <li><a href="https://www.reddit.com/r/GlobalOffensive/">r/csgo</a></li>
+          <li><a href="https://www.reddit.com/r/movies/">r/movies</a></li>
+          <li><a href="https://boards.4chan.org/g/">/g/</a></li>
+          <li><a href="https://news.ycombinator.com/">hn</a></li>
+          <li><a href="https://x.com/home/">x</a></li>
+        </ul>
+      </div>
+
+      <div class="link-column">
+        <ul>
+          <li><a href="https://mail.google.com/">Gmail</a></li>
+          <li><a href="https://outlook.office.com/">Outlook</a></li>
+          <li><a href="https://keep.google.com/">Google Keep</a></li>
+          <li><a href="http://192.168.1.200/admin/">pi-hole</a></li>
+          <li><a href="http://192.168.1.200:8123/">hass</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
